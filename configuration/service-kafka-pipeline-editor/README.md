@@ -438,6 +438,7 @@ Once all services are running, you can access the following:
 ### Shut Down Services
 
 To stop all running services and clean up resources, use the following command:
+
 ```bash
 docker-compose down
 ```
