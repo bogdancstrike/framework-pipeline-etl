@@ -1,0 +1,9 @@
+
+rpython:S3776Î"TRefactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.(µáÎüÿÿÿÿ
+Cpython:S6660Ğ"%Use the `isinstance()` function here.(µáÎüÿÿÿÿ
+>python:S6660Ñ"%Use the `isinstance()` function here.(÷êé
+>python:S6660Ñ"%Use the `isinstance()` function here.(÷êé
+>python:S6660Ñ"%Use the `isinstance()` function here.(÷êé
+Kpython:S1172Ì"-Remove the unused function parameter "value".(ğ±Çáÿÿÿÿÿ
+Qpython:S1172Í"8Remove the unused function parameter "serialized_value".(´¸»»
+Ipython:S1172Ì"+Remove the unused function parameter "key".(ğ±Çáÿÿÿÿÿ

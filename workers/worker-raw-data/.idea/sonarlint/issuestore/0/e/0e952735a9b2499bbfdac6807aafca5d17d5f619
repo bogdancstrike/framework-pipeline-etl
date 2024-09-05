@@ -1,0 +1,12 @@
+
+“python:S3776Œ"TRefactor this function to reduce its Cognitive Complexity from 38 to the 15 allowed.(’ººîJ$a16133fd-dafd-489b-bd63-f4681638e6b4
+gpython:S108Å")Either remove or fill this block of code.(ã‘Û¾J$dd83bd30-d063-40bc-b3c1-e6095d641a50
+upython:S1481ä"1Replace the unused local variable "afi" with "_".(ÜÓÂæøÿÿÿÿJ$495929f0-993e-43a6-afb9-0cf242566975
+qpython:S1481ø"2Replace the unused local variable "port" with "_".(­ºîÅJ$7b4766e7-798f-4c20-9565-7486da50d4f1
+\python:S3626¸"Remove this redundant return.(ÙãŞŸJ$09ce5f2a-78cb-4f6b-b613-04a69bf9f029
+˜python:S3776¦"TRefactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.(ûåû­ıÿÿÿÿJ$61a36750-2fce-40bb-bd7d-9aa0ae69674f
+“python:S3776ñ"TRefactor this function to reduce its Cognitive Complexity from 41 to the 15 allowed.(‹è‘’J$b127649b-97e0-47cb-bdd9-0cf781609fda
+xpython:S1135³"4Complete the task associated to this "TODO" comment.(ÇãêûÿÿÿÿJ$50bccc19-a6d7-458f-b799-8bb947d5f693
+˜python:S3776§"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(éÕŞüÿÿÿÿJ$2c712ac7-fd64-4415-ab77-e70c2585ef6c
+ypython:S2836"5Add a "break" statement or remove this "else" clause.(³£œ‰øÿÿÿÿJ$a5015721-dbcc-4f20-bf59-008907cb9a71
+ypython:S2836Â"5Add a "break" statement or remove this "else" clause.(³£œ‰øÿÿÿÿJ$f096da0c-659e-4b0c-a06c-319b68c92862
