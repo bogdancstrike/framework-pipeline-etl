@@ -307,7 +307,8 @@ Before running the project, ensure you have the following software installed:
 
 1. **Clone the Repository**  
    Clone the project repository to your local machine:
-   ```bash
+
+```bash
    git clone https://github.com/bogdancstrike/framework-pipeline-etl
    cd framework-pipeline-etl
 ```
