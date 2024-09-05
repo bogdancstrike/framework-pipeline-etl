@@ -245,7 +245,8 @@ This API is essential for managing the entire ETL pipeline by defining which top
    Creates or updates Kafka consumer configurations. You can provide multiple configurations in a single request.
 
    **Example Request Body:**
-   ```json
+   
+```json
    [
      {
        "consumer_name": "worker1",
