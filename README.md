@@ -245,7 +245,7 @@ This API is essential for managing the entire ETL pipeline by defining which top
    Creates or updates Kafka consumer configurations. You can provide multiple configurations in a single request.
 
    **Example Request Body:**
-   
+
 ```json
    [
      {
@@ -316,7 +316,8 @@ Before running the project, ensure you have the following software installed:
 
 1. **Navigate to the Backend Directory**  
    Move into the backend API directory:
-   ```bash
+
+```bash
    cd configuration/service-kafka-pipeline-editor
 ```
 
