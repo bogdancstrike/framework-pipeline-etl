@@ -221,7 +221,8 @@ This API is essential for managing the entire ETL pipeline by defining which top
    Retrieves all Kafka consumer configurations from the database.
 
    **Example Response:**
-   ```json
+
+```json
    [
      {
        "id": 1,
