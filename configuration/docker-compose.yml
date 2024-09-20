@@ -186,6 +186,48 @@ services:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.1
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      workers_network:
+        ipv4_address: 192.168.0.22
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.5.1
+    networks:
+      workers_network:
+        ipv4_address: 192.168.0.21
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5044:5044"   # Optional, for receiving Beats data
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf   # Logstash config inside container
+      - /home/bogdan/workspace/dev/frameworks/etl-kafka/framework-pipeline-etl/logs:/logs   # Mount external log directory
+    environment:
+      - LS_JAVA_OPTS=-Xmx256m -Xms256m
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.5.1
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      workers_network:
+        ipv4_address: 192.168.0.20
+
 volumes:
   postgres_pgdata:
     driver: local # Define the driver and options under the volume name
@@ -223,6 +265,12 @@ volumes:
       type: none
       device: /opt/docker/grafana-dashboards
       o: bind
+  es_data:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /opt/docker/es_data
+      o: bind
 
 networks:
   workers_network:
@@ -237,3 +285,11 @@ networks:
 # mkdir -p /opt/docker/pgadmin &&  chmod -R 777 /opt/docker/pgadmin
 # mkdir -p /opt/docker/mysql &&  chmod -R 777 /opt/docker/mysql
 # mkdir -p /opt/docker/kafka_data &&  chmod -R 777 /opt/docker/kafka_data
+# mkdir -p /opt/docker/es_data &&  chmod -R 777 /opt/docker/es_data
+
+# in elastic container:
+
+# bin/elasticsearch-create-enrollment-token --scope kibana
+# elasticsearch-setup-passwords interactive
+
+# default password for all users is: elastic
