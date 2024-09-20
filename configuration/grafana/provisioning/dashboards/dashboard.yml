@@ -1,0 +1,38 @@
+apiVersion: 1
+
+providers:
+  - name: 'PostgreSQL Dashboards'
+    orgId: 1
+    folder: 'Hera'
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards/postgres.json
+    updateIntervalSeconds: 10
+    editable: true
+
+  - name: 'MySQL Dashboards'
+    orgId: 1
+    folder: 'Hera'
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards/mysql
+    updateIntervalSeconds: 10
+    editable: true
+
+  - name: 'Elasticsearch Dashboards'
+    orgId: 1
+    folder: 'Hera'
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards/elasticsearch
+    updateIntervalSeconds: 10
+    editable: true
+
+  - name: 'Jaeger Dashboards'
+    orgId: 1
+    folder: 'Hera'
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards/jaeger
+    updateIntervalSeconds: 10
+    editable: true

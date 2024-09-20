@@ -1,0 +1,42 @@
+apiVersion: 1
+
+datasources:
+  - name: postgres_source
+    type: postgres
+    editable: true
+    access: proxy
+    url: postgresql-container:5432
+    database: hera_data
+    user: postgres
+    secureJsonData:
+      password: 'postgres'
+    jsonData:
+      sslmode: 'disable'
+
+  - name: elasticsearch_source
+    type: elasticsearch
+    access: proxy
+    url: http://elasticsearch:9200
+    database: "[metrics-]YYYY.MM.DD"
+    jsonData:
+      timeField: "@timestamp"
+    isDefault: false
+    editable: false
+
+  - name: jaeger_source
+    type: jaeger
+    access: proxy
+    url: http://jaeger-container:16686
+    isDefault: true
+    jsonData:
+      tracesToLogs: true
+
+  - name: mysql_source
+    type: mysql
+    access: proxy
+    url: database:3306
+    database: dev
+    user: dev
+    password: dev
+    isDefault: false
+    editable: false
