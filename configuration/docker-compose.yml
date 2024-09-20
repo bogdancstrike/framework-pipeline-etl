@@ -1,36 +1,10 @@
 version: '3.8'
 
 services:
-  backend:
-    image: service-kafka-pipeline-editor:latest
-    networks:
-      hera_network:
-        ipv4_address: 192.168.0.14
-    environment:
-      - FLASK_ENV=development
-      - DB_HOST=localhost
-      - DB_PORT=3306
-      - DB_NAME=dev
-      - DB_USER=dev
-      - DB_PASSWORD=dev
-    depends_on:
-      database:
-        condition: service_healthy
-
-  frontend:
-    image: kafka-workers-visualizer:latest
-    networks:
-      hera_network:
-        ipv4_address: 192.168.0.15
-    env_file:
-      - ./kafka-workers-visualizer/.env
-    depends_on:
-      - backend
-
   database:
     image: mysql:8.0
     networks:
-      hera_network:
+      workers_network:
         ipv4_address: 192.168.0.16
     environment:
       MYSQL_ROOT_PASSWORD: dev
@@ -52,9 +26,9 @@ services:
 
   kafka:
     image: bitnami/kafka:latest
-    networks:
-      hera_network:
-        ipv4_address: 192.168.0.17
+    network_mode: "host"
+    ports:
+      - "9092:9092"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_CFG_NODE_ID: 1
@@ -72,19 +46,51 @@ services:
       KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
     container_name: kafka
     volumes:
-      - ./kafka_data:/bitnami/kafka/data
+      - kafka_data:/bitnami/kafka/data
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    networks:
-      hera_network:
-        ipv4_address: 192.168.0.18
+    network_mode: "host"
+    ports:
+      - "8080:8080"
     environment:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: localhost:9092
     depends_on:
       - kafka
     container_name: kafka-ui
+
+  backend:
+    image: service-kafka-pipeline-editor:latest
+    networks:
+      workers_network:
+        ipv4_address: 192.168.0.14
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - DB_HOST=192.168.0.16
+      - DB_PORT=3306
+      - DB_NAME=dev
+      - DB_USER=dev
+      - DB_PASSWORD=dev
+    depends_on:
+      database:
+        condition: service_healthy
+
+  frontend:
+    image: kafka-workers-visualizer:latest
+    networks:
+      workers_network:
+        ipv4_address: 192.168.0.15
+    ports:
+      - "3033:3033"
+    env_file:
+      - ./kafka-workers-visualizer/.env
+    depends_on:
+      - backend
+      - kafka
+      - kafka-ui
 
   postgres_db:
     image: postgres:latest
@@ -94,7 +100,7 @@ services:
       - postgres_pgdata:/var/lib/postgresql/data
       - ./entrypoint.sh:/docker-entrypoint-initdb.d/entrypoint.sh
     networks:
-      hera_network:
+      workers_network:
         ipv4_address: 192.168.0.10
     ports:
       - "5432:5432"
@@ -130,9 +136,8 @@ services:
     restart: unless-stopped
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-      # - pgadmin-data:/pgadmin4/servers.json
     networks:
-      hera_network:
+      workers_network:
         ipv4_address: 192.168.0.11
     ports:
       - "${PGADMIN_PORT:-5050}:80"
@@ -146,7 +151,7 @@ services:
     container_name: jaeger-container
     restart: unless-stopped
     networks:
-      hera_network:
+      workers_network:
         ipv4_address: 192.168.0.12
     ports:
       - "16686:16686"  # Jaeger UI
@@ -168,7 +173,7 @@ services:
     container_name: grafana-container
     restart: unless-stopped
     networks:
-      hera_network:
+      workers_network:
         ipv4_address: 192.168.0.13
     ports:
       - "3000:3000"
@@ -199,10 +204,28 @@ volumes:
     driver_opts:
       type: none
       device: /opt/docker/mysql
-      o: bind    
+      o: bind
+  kafka_data:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /opt/docker/kafka_data
+      o: bind
+  grafana-provisioning:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /opt/docker/grafana-provisioning
+      o: bind
+  grafana-dashboards:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /opt/docker/grafana-dashboards
+      o: bind
 
 networks:
-  hera_network:
+  workers_network:
     driver: bridge
     ipam:
       config:
@@ -213,3 +236,4 @@ networks:
 # mkdir -p /opt/docker/pgdata &&  chmod -R 777 /opt/docker/pgdata
 # mkdir -p /opt/docker/pgadmin &&  chmod -R 777 /opt/docker/pgadmin
 # mkdir -p /opt/docker/mysql &&  chmod -R 777 /opt/docker/mysql
+# mkdir -p /opt/docker/kafka_data &&  chmod -R 777 /opt/docker/kafka_data

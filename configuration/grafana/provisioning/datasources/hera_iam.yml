@@ -1,0 +1,13 @@
+apiVersion: 1
+datasources:
+  - name: hera_iam
+    type: postgres
+    editable: true
+    access: proxy
+    url: postgresql-container:5432
+    database: hera_iam
+    user: postgres
+    secureJsonData:
+      password: 'postgres'
+    jsonData:
+      sslmode: 'disable'

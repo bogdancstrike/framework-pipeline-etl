@@ -55,9 +55,6 @@ python-pkcs11 @ git+https://github.com/pyauth/python-pkcs11@a1b821e95928342c6116
 pytz
 pyOpenSSL
 requests~=2.32.3
-# libsqlite3-dev
-# sqlcipher3
-# socketio
 six
 spyne
 sqlalchemy_views
