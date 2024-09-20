@@ -1,0 +1,25 @@
+{
+    "namespaces": [
+        {
+            "name": "api",
+            "description": "api"
+        }
+    ],
+    "models": {
+        "model": {
+            "id": {"type": "string", "args": {"required":true, "min_length":1, "description": "id", "example": "123"}},
+            "message": {"type": "string", "args": {"required":true, "min_length":1, "description": "message", "example": "message"}}
+        }
+    },
+    "endpoints": [
+        {
+            "operation_name": "input", "namespace": "api",
+            "model_name": "model",
+            "request_method": ["post"],
+            "api_url": "/",
+            "api_security": ["oauth2", "apikey"],
+            "security_roles": null,
+            "exec_method": {"module_name": "ops_service.worker_api", "method_name": "process"}
+        }
+    ]
+}

@@ -1,0 +1,140 @@
+# mkdir postgres-docker
+# cd postgres-docker
+# nano docker-compose.yml
+# version: "3.8"
+services:
+  db:
+    image: postgres:latest
+    container_name: postgresql-container
+    restart: unless-stopped
+    volumes:
+      - postgres_pgdata:/var/lib/postgresql/data
+      - ./entrypoint.sh:/docker-entrypoint-initdb.d/entrypoint.sh
+      # - ./postgres-certs/:/var/lib/postgresql/certs/
+    networks:
+      hera_network:
+        ipv4_address: 192.168.0.10
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: hera_data
+      PGDATA: /var/lib/postgresql/data/pgdata
+      DATABASE_HOST: hera_data
+      POSTGRES_MULTIPLE_DATABASES: hera_stack,hera_template,hera_task,hera_data,hera_iam
+      SCHEMA: hera
+      ANON: web_anon
+      AUTHENTICATOR: authenticator
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -q -d -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 100000
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 100000
+        window: 10s
+      placement:
+        constraints: [ node.role == manager ]
+  
+  pgadmin:
+#    image: dpage/pgadmin4:latest - do not use latest or 8.11 - has a bug on display record list, until fix use 8.10
+    image: dpage/pgadmin4:8.10
+    container_name: pgadmin4-container
+    restart: unless-stopped
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+      # - pgadmin-data:/pgadmin4/servers.json
+    networks:
+      hera_network:
+        ipv4_address: 192.168.0.11
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: me@io.ro
+      PGADMIN_DEFAULT_PASSWORD: "[][][]"
+      # PGADMIN_CONFIG_SERVER_MODE: False
+      # PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: False
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger-container
+    restart: unless-stopped
+    networks: 
+      hera_network:
+        ipv4_address: 192.168.0.12
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "4317:4317"    # Collector, OpenTelemetry gRPC
+      - "4318:4318"    # Collector, OpenTelemetry gRPC
+      - "5775:5775"
+      - "5778:5778"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "14250:14250"
+      - "14267:14267"
+      - "14268:14268"
+    environment:
+      - LOG_LEVEL=debug
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+
+volumes:
+  postgres_pgdata:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /opt/docker/pgdata
+      o: bind
+  pgadmin-data:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /opt/docker/pgadmin
+      o: bind
+
+networks:
+  hera_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1
+
+# networks:
+#   jaeger:
+#     driver: bridge
+# networks:
+#   jaeger:
+#     driver: bridge
+#   name: jaeger
+#     external: true
+#   extra_hosts:
+#   - "host.docker.internal:host-gateway"
+
+# docker volume inspect db_data
+# docker volume rm volume-name
+# docker volume prune
+# docker container ls -qa
+
+# docker container rm [id]
+# docker volume ls
+# docker volume rm [VolumeName]
+
+# docker-compose up -d --renew-anon-volumes
+
+
+# docker save postgres10 > postgres10.tar
+# docker load postgres10 < postgres10.tar
+# docker volume create postgres
+# docker run -d -it -v postgres:/var/lib/postgresql/10/main -p 5433:5432 postgres10 bash
+# docker exec -it $(docker ps --format "{{.ID}}") bash service postgresql restart
+
+#apt install postgresql-client-common postgresql-client postgresql-client-16
+#export PGPASSWORD=postgres && (psql -h 10.10.20.250 -p 5432 -U postgres -d hera_stack -t -c "SELECT 'DROP TABLE IF EXISTS \"' || schemaname || '\".\"' || tablename || '\" CASCADE;' FROM pg_tables WHERE schemaname in ('public', 'hera');") | psql -h 10.10.20.250 -p 5432 -U postgres -d hera_stack
+
+
+# mkdir -p /opt/docker/pgdata &&  chmod -R 777 /opt/docker/pgdata
+# mkdir -p /opt/docker/pgadmin &&  chmod -R 777 /opt/docker/pgadmin

@@ -1,0 +1,15 @@
+[
+    {
+        "realm_name": "local",
+        "login_data": {
+            "username": "admin",
+            "password": "admin",
+            "client_id": "client",
+            "client_secret": "secret",
+            "realm": "local"
+        },
+        "access_token": null,
+        "refresh_token": null,
+        "public_key": null
+    }
+]
