@@ -33,5 +33,5 @@ def process(app, access_token=None, operation: Optional[str] = None, request=Non
     mx = f'({inspect.currentframe().f_code.co_name})'
     message = lower_req(request, mx=mx)
     message['language'] = 'romanian'
-    return rx
+    return message
 
