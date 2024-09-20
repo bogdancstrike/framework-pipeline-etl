@@ -20,5 +20,5 @@ def process(message, consumer_name, metadatas):
     Returns:
         dict: The final processed message.
     """
-    message['bogdan'] = 'test'
+    message['language'] = 'romanian'
     return message

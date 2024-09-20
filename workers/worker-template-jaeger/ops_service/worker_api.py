@@ -31,6 +31,7 @@ def process(app, access_token=None, operation: Optional[str] = None, request=Non
         - The `lower_req` method, which is invoked within this function, appears to handle some form of data normalization or transformation on the request.
     """
     mx = f'({inspect.currentframe().f_code.co_name})'
-    rx = lower_req(request, mx=mx)
+    message = lower_req(request, mx=mx)
+    message['language'] = 'romanian'
     return rx
 
