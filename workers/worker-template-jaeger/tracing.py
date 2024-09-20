@@ -9,6 +9,7 @@ from opentelemetry.exporter.jaeger.thrift import JaegerExporter
 from opentelemetry.trace import Status, StatusCode
 from os import environ, path
 from dotenv import load_dotenv
+import config
 
 basedir = path.abspath(path.dirname(__file__))
 load_dotenv(dotenv_path=path.join(basedir, '.env'))
@@ -16,7 +17,7 @@ load_dotenv(dotenv_path=path.join(basedir, '.env'))
 # Configure the tracer provider
 trace.set_tracer_provider(
     TracerProvider(
-        resource=Resource.create({SERVICE_NAME: environ.get('JAEGER_SERVICE_NAME')})
+        resource=Resource.create({SERVICE_NAME: config.Config.WORKER_NAME})
     )
 )
 
