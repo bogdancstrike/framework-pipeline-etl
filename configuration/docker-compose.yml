@@ -3,7 +3,9 @@ version: '3.8'
 services:
   backend:
     image: service-kafka-pipeline-editor:latest
-    network_mode: host
+    networks:
+      hera_network:
+        ipv4_address: 192.168.0.14
     environment:
       - FLASK_ENV=development
       - DB_HOST=localhost
@@ -17,7 +19,9 @@ services:
 
   frontend:
     image: kafka-workers-visualizer:latest
-    network_mode: host
+    networks:
+      hera_network:
+        ipv4_address: 192.168.0.15
     env_file:
       - ./kafka-workers-visualizer/.env
     depends_on:
@@ -25,6 +29,9 @@ services:
 
   database:
     image: mysql:8.0
+    networks:
+      hera_network:
+        ipv4_address: 192.168.0.16
     environment:
       MYSQL_ROOT_PASSWORD: dev
       MYSQL_DATABASE: dev
@@ -41,11 +48,13 @@ services:
       start_period: 30s
     # Add volume for persistent MySQL data
     volumes:
-      - ./mysql_data:/var/lib/mysql 
+      - mysql-data:/var/lib/mysql 
 
   kafka:
     image: bitnami/kafka:latest
-    network_mode: "host"
+    networks:
+      hera_network:
+        ipv4_address: 192.168.0.17
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_CFG_NODE_ID: 1
@@ -67,7 +76,9 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    network_mode: "host"
+    networks:
+      hera_network:
+        ipv4_address: 192.168.0.18
     environment:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: localhost:9092
@@ -183,6 +194,12 @@ volumes:
       type: none
       device: /opt/docker/pgadmin
       o: bind
+  mysql-data:
+    driver: local # Define the driver and options under the volume name
+    driver_opts:
+      type: none
+      device: /opt/docker/mysql
+      o: bind    
 
 networks:
   hera_network:
@@ -191,3 +208,8 @@ networks:
       config:
         - subnet: 192.168.0.0/24
           gateway: 192.168.0.1
+
+
+# mkdir -p /opt/docker/pgdata &&  chmod -R 777 /opt/docker/pgdata
+# mkdir -p /opt/docker/pgadmin &&  chmod -R 777 /opt/docker/pgadmin
+# mkdir -p /opt/docker/mysql &&  chmod -R 777 /opt/docker/mysql
