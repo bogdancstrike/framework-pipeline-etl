@@ -27,6 +27,7 @@ spec:
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
+
       containers:
         - name: mysql
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -62,6 +63,8 @@ spec:
               mountPath: /var/lib/mysql
             - name: mysql-config
               mountPath: /etc/mysql/conf.d
+            - name: mysql-init
+              mountPath: /docker-entrypoint-initdb.d
 
       volumes:
         - name: mysql-persistent-storage
@@ -70,3 +73,6 @@ spec:
         - name: mysql-config
           configMap:
             name: mysql-config
+        - name: mysql-init
+          configMap:
+            name: mysql-init-script
