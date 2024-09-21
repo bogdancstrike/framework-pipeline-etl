@@ -1,0 +1,9 @@
+replicaCount: 3
+
+image:
+  repository: grafana/grafana
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 3000

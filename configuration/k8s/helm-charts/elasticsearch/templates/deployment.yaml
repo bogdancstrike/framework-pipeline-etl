@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+        - name: elasticsearch
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: discovery.type
+              value: single-node
+            - name: ES_JAVA_OPTS
+              value: "-Xms512m -Xmx512m"
+          ports:
+            - containerPort: 9200
+          volumeMounts:
+            - name: elasticsearch-persistent-storage
+              mountPath: /usr/share/elasticsearch/data
+      volumes:
+        - name: elasticsearch-persistent-storage
+          persistentVolumeClaim:
+            claimName: elasticsearch-pvc

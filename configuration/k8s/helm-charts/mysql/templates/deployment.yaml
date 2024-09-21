@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: dev
+            - name: MYSQL_DATABASE
+              value: dev
+            - name: MYSQL_USER
+              value: dev
+            - name: MYSQL_PASSWORD
+              value: dev
+          ports:
+            - containerPort: 3306
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - "mysqladmin ping -h 127.0.0.1 -uroot -pdev"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc

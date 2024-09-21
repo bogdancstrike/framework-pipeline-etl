@@ -1,0 +1,15 @@
+replicaCount: 3
+
+image:
+  repository: mysql
+  tag: "8.0"
+
+service:
+  type: ClusterIP
+  port: 3306
+
+persistence:
+  enabled: true
+  storageClass: "hostpath"
+  accessMode: ReadWriteOnce
+  size: 5Gi

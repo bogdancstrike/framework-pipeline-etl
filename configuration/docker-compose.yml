@@ -291,5 +291,4 @@ networks:
 
 # bin/elasticsearch-create-enrollment-token --scope kibana
 # elasticsearch-setup-passwords interactive
-
 # default password for all users is: elastic

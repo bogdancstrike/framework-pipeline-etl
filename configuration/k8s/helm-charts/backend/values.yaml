@@ -1,0 +1,26 @@
+replicaCount: 3
+
+image:
+  repository: localhost:32000/service-kafka-pipeline-editor
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 5000
+
+env:
+  - name: FLASK_ENV
+    value: development
+  - name: DB_HOST
+    value: mysql
+  - name: DB_PORT
+    value: "3306"
+  - name: DB_NAME
+    value: dev
+  - name: DB_USER
+    value: dev
+  - name: DB_PASSWORD
+    value: dev
+
+dependsOn:
+  - mysql

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-ui
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: kafka-ui
+  template:
+    metadata:
+      labels:
+        app: kafka-ui
+    spec:
+      containers:
+        - name: kafka-ui
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: KAFKA_CLUSTERS_0_NAME
+              value: local
+            - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
+              value: localhost:9092
+          ports:
+            - containerPort: 8080

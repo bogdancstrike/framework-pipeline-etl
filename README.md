@@ -488,3 +488,8 @@ This section outlines potential future enhancements to the project, focusing on 
 ## License
 
 This project is licensed under the MIT License.
+
+---
+
+bogdan@bogdan:~$ docker tag service-kafka-pipeline-editor:latest localhost:32000/service-kafka-pipeline-editor:latest
+bogdan@bogdan:~$ docker push localhost:32000/service-kafka-pipeline-editor:latest

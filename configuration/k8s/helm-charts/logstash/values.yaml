@@ -1,0 +1,9 @@
+replicaCount: 3
+
+image:
+  repository: docker.elastic.co/logstash/logstash
+  tag: "8.5.1"
+
+service:
+  type: ClusterIP
+  port: 5044

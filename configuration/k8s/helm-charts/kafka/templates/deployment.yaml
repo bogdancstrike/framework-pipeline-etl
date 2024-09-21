@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+        - name: kafka
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: KAFKA_BROKER_ID
+              value: "1"
+            - name: KAFKA_CFG_LISTENERS
+              value: "PLAINTEXT://localhost:9092"
+          ports:
+            - containerPort: 9092

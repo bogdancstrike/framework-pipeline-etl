@@ -1,0 +1,9 @@
+replicaCount: 3
+
+image:
+  repository: provectuslabs/kafka-ui
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 8080

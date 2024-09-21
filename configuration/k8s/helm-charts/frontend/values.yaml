@@ -1,0 +1,9 @@
+replicaCount: 3
+
+image:
+  repository: localhost:32000/kafka-workers-visualizer
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 3033
