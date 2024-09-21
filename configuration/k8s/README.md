@@ -88,3 +88,9 @@ k8s-project/
 ```code
 	microk8s kubectl scale deployment <deployment-name> --replicas=3 -n <namespace>
 ```
+
+## Force kill pods
+
+```code
+sudo microk8s kubectl delete pods --all --namespace dev --force --grace-period=0
+```
