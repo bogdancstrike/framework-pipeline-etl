@@ -17,8 +17,32 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
             - name: KAFKA_BROKER_ID
-              value: "1"
+              value: "{{ .Values.kafka.brokerId }}"
+            - name: KAFKA_CFG_NODE_ID
+              value: "{{ .Values.kafka.nodeId }}"
+            - name: KAFKA_CFG_PROCESS_ROLES
+              value: "{{ .Values.kafka.processRoles }}"
             - name: KAFKA_CFG_LISTENERS
-              value: "PLAINTEXT://localhost:9092"
+              value: "{{ .Values.kafka.listeners }}"
+            - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
+              value: "{{ .Values.kafka.listenerSecurityProtocolMap }}"
+            - name: KAFKA_CFG_CONTROLLER_QUORUM_VOTERS
+              value: "{{ .Values.kafka.controllerQuorumVoters }}"
+            - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
+              value: "{{ .Values.kafka.controllerListenerNames }}"
+            - name: KAFKA_CFG_ADVERTISED_LISTENERS
+              value: "{{ .Values.kafka.advertisedListeners }}"
+            - name: KAFKA_CFG_LOG_DIRS
+              value: "{{ .Values.kafka.logDirs }}"
+            - name: KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR
+              value: "{{ .Values.kafka.offsetsTopicReplicationFactor }}"
+            - name: KAFKA_CFG_DEFAULT_REPLICATION_FACTOR
+              value: "{{ .Values.kafka.defaultReplicationFactor }}"
+            - name: KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR
+              value: "{{ .Values.kafka.transactionStateLogReplicationFactor }}"
+            - name: KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR
+              value: "{{ .Values.kafka.transactionStateLogMinIsr }}"
+            - name: KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE
+              value: "{{ .Values.kafka.autoCreateTopicsEnable }}"
           ports:
             - containerPort: 9092

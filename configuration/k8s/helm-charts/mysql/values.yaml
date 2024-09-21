@@ -1,15 +1,25 @@
-replicaCount: 3
+# Number of MySQL replicas
+replicaCount: 1
 
+# Image settings
 image:
   repository: mysql
   tag: "8.0"
 
+# MySQL credentials and database setup
+mysqlRootPassword: dev
+mysqlDatabase: dev
+mysqlUser: dev
+mysqlPassword: dev
+
+# Service settings
 service:
-  type: ClusterIP
+  type: NodePort  # Change to NodePort or LoadBalancer if needed external access
   port: 3306
 
+# Persistent volume settings
 persistence:
   enabled: true
-  storageClass: "hostpath"
+  storageClass: "hostpath"  # Use "standard" if deploying to cloud or your default storage class
   accessMode: ReadWriteOnce
   size: 5Gi

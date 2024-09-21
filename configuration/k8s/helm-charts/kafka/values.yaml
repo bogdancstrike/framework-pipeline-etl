@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 1
 
 image:
   repository: bitnami/kafka
@@ -7,3 +7,19 @@ image:
 service:
   type: ClusterIP
   port: 9092
+
+kafka:
+  brokerId: 1
+  nodeId: 1
+  processRoles: broker,controller
+  listeners: PLAINTEXT://localhost:9092,CONTROLLER://localhost:9093
+  listenerSecurityProtocolMap: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+  controllerQuorumVoters: 1@localhost:9093
+  controllerListenerNames: CONTROLLER
+  advertisedListeners: PLAINTEXT://localhost:9092
+  logDirs: /bitnami/kafka/data
+  offsetsTopicReplicationFactor: 1
+  defaultReplicationFactor: 1
+  transactionStateLogReplicationFactor: 1
+  transactionStateLogMinIsr: 1
+  autoCreateTopicsEnable: "true"

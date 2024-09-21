@@ -2,7 +2,3 @@ apiVersion: v2
 name: kafka
 version: 1.0.0
 appVersion: "latest"
-apiVersion: v2
-name: kafka
-version: 1.0.0
-appVersion: "latest"

@@ -21,6 +21,3 @@ env:
     value: dev
   - name: DB_PASSWORD
     value: dev
-
-dependsOn:
-  - mysql

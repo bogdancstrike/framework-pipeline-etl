@@ -4,30 +4,59 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="k8s" />
+    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="k8s">
+      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/mysql/templates/configmap.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/backend/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/backend/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/backend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/backend/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/grafana/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/grafana/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/Chart.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/logstash/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/logstash/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/mysql/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/mysql/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/mysql/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/mysql/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/postgres/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/postgres/values.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "bogdancstrike"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;bogdancstrike&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:bogdancstrike/framework-pipeline-etl.git",
-    "accountId": "7f97c3b0-640b-4925-9bbe-a29fc6ad13a6"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:bogdancstrike/framework-pipeline-etl.git&quot;,
+    &quot;accountId&quot;: &quot;7f97c3b0-640b-4925-9bbe-a29fc6ad13a6&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2mMFY2qN5ZpJzWGnXgqBdXJiHzP" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,7 +71,13 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -61,7 +96,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726878581525</updated>
-      <workItem from="1726878582580" duration="2546000" />
+      <workItem from="1726878582580" duration="2863000" />
+      <workItem from="1726906796148" duration="294000" />
+      <workItem from="1726907097717" duration="2384000" />
     </task>
     <task id="LOCAL-00001" summary="k8s">
       <option name="closed" value="true" />

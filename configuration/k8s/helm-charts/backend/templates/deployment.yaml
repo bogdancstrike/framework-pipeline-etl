@@ -30,3 +30,11 @@ spec:
               value: dev
           ports:
             - containerPort: 5000
+          readinessProbe:
+            exec:
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASSWORD -e 'SELECT 1' > /dev/null 2>&1"
+            initialDelaySeconds: 5
+            periodSeconds: 10
