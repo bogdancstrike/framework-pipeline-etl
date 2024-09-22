@@ -12,11 +12,11 @@ kafka:
   brokerId: 1
   nodeId: 1
   processRoles: broker,controller
-  listeners: PLAINTEXT://localhost:9092,CONTROLLER://localhost:9093
+  listeners: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
   listenerSecurityProtocolMap: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
   controllerQuorumVoters: 1@localhost:9093
   controllerListenerNames: CONTROLLER
-  advertisedListeners: PLAINTEXT://localhost:9092
+  advertisedListeners: PLAINTEXT://kafka:9092
   logDirs: /bitnami/kafka/data
   offsetsTopicReplicationFactor: 1
   defaultReplicationFactor: 1

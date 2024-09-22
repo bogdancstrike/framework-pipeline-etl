@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="updated helm for frontend&#10;updated dockerfile for frontend">
-      <change afterPath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/nginx.conf" afterDir="false" />
+    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="serve frontend with nginx in container">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/backend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/backend/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/.env" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/src/network.js" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/src/network.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workers/worker-template-jaeger/.env" beforeDir="false" afterPath="$PROJECT_DIR$/workers/worker-template-jaeger/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workers/worker-template-jaeger/framework/etl/framework_etl.py" beforeDir="false" afterPath="$PROJECT_DIR$/workers/worker-template-jaeger/framework/etl/framework_etl.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +127,7 @@
       <workItem from="1726906796148" duration="294000" />
       <workItem from="1726907097717" duration="3591000" />
       <workItem from="1726929826636" duration="8690000" />
-      <workItem from="1727008677443" duration="6773000" />
+      <workItem from="1727008677443" duration="7889000" />
     </task>
     <task id="LOCAL-00001" summary="k8s">
       <option name="closed" value="true" />
@@ -189,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727014735999</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="serve frontend with nginx in container">
+      <option name="closed" value="true" />
+      <created>1727016369249</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727016369249</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +230,8 @@
     <MESSAGE value="added /api/health endpoint for backend app&#10;changed dockerfile for frontend&#10;updated helm for frontend" />
     <MESSAGE value="pdated helm for frontend" />
     <MESSAGE value="updated helm for frontend&#10;updated dockerfile for frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated helm for frontend&#10;updated dockerfile for frontend" />
+    <MESSAGE value="serve frontend with nginx in container" />
+    <option name="LAST_COMMIT_MESSAGE" value="serve frontend with nginx in container" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

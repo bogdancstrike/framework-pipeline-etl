@@ -35,7 +35,7 @@ def create_kafka_consumer(topics_input, bootstrap_servers):
             logger.info(f"Kafka consumer connected to topics {topics_input}")
             return consumer
         except NoBrokersAvailable as e:
-            logger.error(f"No Kafka brokers available: {e}. Retrying in 5 seconds...")
+            logger.error(f"No Kafka brokers available: {e} -- {bootstrap_servers} --. Retrying in 5 seconds...")
             time.sleep(5)
         except KafkaError as e:
             logger.error(f"Kafka error occurred: {e}. Retrying in 5 seconds...")
