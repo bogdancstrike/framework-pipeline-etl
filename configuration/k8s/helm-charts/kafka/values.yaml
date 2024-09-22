@@ -14,7 +14,7 @@ kafka:
   processRoles: broker,controller
   listeners: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
   listenerSecurityProtocolMap: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
-  controllerQuorumVoters: 1@localhost:9093
+  controllerQuorumVoters: 1@kafka:9093
   controllerListenerNames: CONTROLLER
   advertisedListeners: PLAINTEXT://kafka:9092
   logDirs: /bitnami/kafka/data

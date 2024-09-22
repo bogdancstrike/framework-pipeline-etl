@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="serve frontend with nginx in container">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/templates/deployment.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workers/worker-template-jaeger/.env" beforeDir="false" afterPath="$PROJECT_DIR$/workers/worker-template-jaeger/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workers/worker-template-jaeger/framework/etl/framework_etl.py" beforeDir="false" afterPath="$PROJECT_DIR$/workers/worker-template-jaeger/framework/etl/framework_etl.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +124,7 @@
       <workItem from="1726906796148" duration="294000" />
       <workItem from="1726907097717" duration="3591000" />
       <workItem from="1726929826636" duration="8690000" />
-      <workItem from="1727008677443" duration="7889000" />
+      <workItem from="1727008677443" duration="8233000" />
     </task>
     <task id="LOCAL-00001" summary="k8s">
       <option name="closed" value="true" />
