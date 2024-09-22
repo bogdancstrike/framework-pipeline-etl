@@ -2,8 +2,15 @@ replicaCount: 1
 
 image:
   repository: localhost:32000/kafka-workers-visualizer
-  tag: latest
+  tag: "latest"
+  pullPolicy: Always
 
 service:
-  type: ClusterIP # NodePort or LoadBalancer for external access
-  port: 3033
+  type: NodePort
+  port: 80
+  nodePort: 3033
+
+ingress:
+  enabled: false
+
+resources: {}

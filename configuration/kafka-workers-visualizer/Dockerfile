@@ -1,26 +1,22 @@
-# Use the official Node.js image as a base image
-FROM node:16-alpine
+# Step 1: Build the React app
+FROM node:16-alpine AS build
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the package.json and package-lock.json into the container
-COPY package*.json ./
-
-# Install dependencies
+COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy the rest of the application code into the container
-COPY . .
-
-# Build the React app for production
+COPY ./ ./
 RUN npm run build
 
-# Install a simple server to serve the build
-RUN npm install -g serve
+# Step 2: Serve the React app with Nginx
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
 
-# Expose port 3000 for the frontend
-EXPOSE 3000
+# Expose port 80 to serve the app
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 
-# Command to serve the build
-CMD ["serve", "-s", "build"]
+# docker build --no-cache -t kafka-workers-visualizer:latest .
+# docker tag kafka-workers-visualizer:latest localhost:32000/kafka-workers-visualizer:latest
+# docker push localhost:32000/kafka-workers-visualizer:latest

@@ -13,8 +13,8 @@ spec:
         app: frontend
     spec:
       containers:
-        - name: frontend
+        - name: react-app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: Always
           ports:
-            - containerPort: 3033
+            - containerPort: 80
+          resources: {{- toYaml .Values.resources | nindent 12 }}
