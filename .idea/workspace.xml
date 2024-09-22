@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="serve frontend with nginx in container">
-      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/Chart.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/deployment.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/values.yaml" afterDir="false" />
+    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="added helm for jaeger&#10;updated deploy.sh">
+      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/ingress/jaeger-ingress.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/deploy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/Chart.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/values.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +129,7 @@
       <workItem from="1726906796148" duration="294000" />
       <workItem from="1726907097717" duration="3591000" />
       <workItem from="1726929826636" duration="8690000" />
-      <workItem from="1727008677443" duration="8758000" />
+      <workItem from="1727008677443" duration="10527000" />
     </task>
     <task id="LOCAL-00001" summary="k8s">
       <option name="closed" value="true" />
@@ -203,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727017819633</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added helm for jaeger&#10;updated deploy.sh">
+      <option name="closed" value="true" />
+      <created>1727018337328</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727018337328</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +249,8 @@
     <MESSAGE value="pdated helm for frontend" />
     <MESSAGE value="updated helm for frontend&#10;updated dockerfile for frontend" />
     <MESSAGE value="serve frontend with nginx in container" />
-    <option name="LAST_COMMIT_MESSAGE" value="serve frontend with nginx in container" />
+    <MESSAGE value="added helm for jaeger&#10;updated deploy.sh" />
+    <option name="LAST_COMMIT_MESSAGE" value="added helm for jaeger&#10;updated deploy.sh" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

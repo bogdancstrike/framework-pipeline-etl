@@ -94,3 +94,10 @@ k8s-project/
 ```code
 sudo microk8s kubectl delete pods --all --namespace dev --force --grace-period=0
 ```
+
+## Helm Charts
+
+- Chart.yaml: Standard metadata for the chart.
+- values.yaml: Defines the image, replica count, and service details.
+- deployment.yaml: Specifies the deployment with ports and environment variables.
+- service.yaml: Exposes the necessary ports using a ClusterIP service type.
