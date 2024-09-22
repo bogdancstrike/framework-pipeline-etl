@@ -15,4 +15,4 @@ spec:
               service:
                 name: frontend
                 port:
-                  number: 3033
+                  number: 80

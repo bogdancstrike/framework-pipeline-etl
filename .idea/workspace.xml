@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="changed frontend to clusterip">
+    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="added /api/health endpoint for backend app&#10;changed dockerfile for frontend&#10;updated helm for frontend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/Chart.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/templates/deployment.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/templates/service.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/.env" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/kafka-workers-visualizer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/ingress/frontend-ingress.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/ingress/frontend-ingress.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +127,7 @@
       <workItem from="1726906796148" duration="294000" />
       <workItem from="1726907097717" duration="3591000" />
       <workItem from="1726929826636" duration="8690000" />
-      <workItem from="1727008677443" duration="4471000" />
+      <workItem from="1727008677443" duration="4940000" />
     </task>
     <task id="LOCAL-00001" summary="k8s">
       <option name="closed" value="true" />
@@ -164,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727010503004</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added /api/health endpoint for backend app&#10;changed dockerfile for frontend&#10;updated helm for frontend">
+      <option name="closed" value="true" />
+      <created>1727014125339</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727014125339</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +203,8 @@
     <MESSAGE value="updated deploy.sh script" />
     <MESSAGE value="updated charts for backend and mysql" />
     <MESSAGE value="changed frontend to clusterip" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed frontend to clusterip" />
+    <MESSAGE value="added /api/health endpoint for backend app&#10;changed dockerfile for frontend&#10;updated helm for frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="added /api/health endpoint for backend app&#10;changed dockerfile for frontend&#10;updated helm for frontend" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
