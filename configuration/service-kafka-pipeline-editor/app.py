@@ -13,6 +13,9 @@ init_db()
 # Create a scoped session
 Session = scoped_session(sessionmaker(bind=create_session().bind))
 
+@app.route('/api/health')
+def health():
+    return jsonify({"status": "ok"}), 200
 
 @app.route('/api/consumer_configs', methods=['GET'])
 def get_consumer_configs():

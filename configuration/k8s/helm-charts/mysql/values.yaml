@@ -12,14 +12,14 @@ mysqlDatabase: dev
 mysqlUser: dev
 mysqlPassword: dev
 
-# Service settings
-service:
-  type: NodePort  # Change to NodePort or LoadBalancer if needed external access
-  port: 3306
+appVersion: "8.0"
 
-# Persistent volume settings
 persistence:
   enabled: true
-  storageClass: "hostpath"  # Use "standard" if deploying to cloud or your default storage class
   accessMode: ReadWriteOnce
-  size: 5Gi
+  size: 8Gi
+  storageClass: ""
+
+service:
+  type: ClusterIP
+  port: 3306

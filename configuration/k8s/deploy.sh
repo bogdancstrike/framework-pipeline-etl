@@ -225,7 +225,7 @@ while [[ "$1" != "" ]]; do
                                 echo -e "${BLUE}--status${NC}                   Show the status of all pods and services"
                                 echo -e "${BLUE}--clean-failed-pods${NC}        Clean up all failed pods"
                                 echo -e "${BLUE}--scale [number]${NC}           Scale all pods to the specified number of instances"
-                                echo -e "${YELLOW}You can also specify the namespace with -n <namespace>. Default is 'dev'.${NC}"
+                                echo -e "${BLUE}You can also specify the namespace with -n <namespace>. Default is 'dev'.${NC}"
                                 exit 0
                                 ;;
         * )                      echo -e "${RED}Unknown option: $1${NC}"

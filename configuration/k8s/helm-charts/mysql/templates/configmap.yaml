@@ -5,7 +5,6 @@ metadata:
 data:
   my.cnf: |
     [mysqld]
-    bind-address = 0.0.0.0
-    skip-networking = 0
-    skip-host-cache
-    skip-name-resolve
+    bind-address=0.0.0.0
+    skip-networking=0
+    sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES

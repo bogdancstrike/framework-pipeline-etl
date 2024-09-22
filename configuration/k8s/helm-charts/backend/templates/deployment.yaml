@@ -12,13 +12,10 @@ spec:
       labels:
         app: backend
     spec:
-      initContainers:
-        - name: wait-for-mysql
-          image: busybox
-          command: [ 'sh', '-c', 'until nc -z -v -w30 mysql 3306; do echo "Waiting for MySQL..."; sleep 5; done; echo "MySQL is up!"' ]
       containers:
         - name: backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
           env:
             - name: FLASK_ENV
               value: development
@@ -35,10 +32,8 @@ spec:
           ports:
             - containerPort: 5000
           readinessProbe:
-            exec:
-              command:
-                - "/bin/sh"
-                - "-c"
-                - "mysql -h $DB_HOST -P $DB_PORT -u $DB_USER -p$DB_PASSWORD -e 'SELECT 1' > /dev/null 2>&1"
+            httpGet:
+              path: /api/health
+              port: 5000
             initialDelaySeconds: 5
             periodSeconds: 10

@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  labels:
+    app: mysql
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -12,67 +14,24 @@ spec:
       labels:
         app: mysql
     spec:
-      # Init container to handle MySQL data directory initialization and permissions
-      initContainers:
-        - name: init-mysql
-          image: mysql:8.0
-          command: ['sh', '-c', 'test -d /var/lib/mysql/mysql || mysqld --initialize-insecure --user=mysql --datadir=/var/lib/mysql']
-          volumeMounts:
-            - name: mysql-persistent-storage
-              mountPath: /var/lib/mysql
-
-        - name: fix-mysql-permissions
-          image: busybox
-          command: ['sh', '-c', 'chown -R 999:999 /var/lib/mysql']
-          volumeMounts:
-            - name: mysql-persistent-storage
-              mountPath: /var/lib/mysql
-
       containers:
         - name: mysql
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "mysql:{{ .Values.appVersion }}"
+          ports:
+            - containerPort: {{ .Values.service.port }}
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "{{ .Values.mysqlRootPassword }}"
+              value: "{{ .Values.mysqlRootPassword }}"  # Added quotes for safety
             - name: MYSQL_DATABASE
-              value: "{{ .Values.mysqlDatabase }}"
+              value: "{{ .Values.mysqlDatabase }}"  # Added quotes
             - name: MYSQL_USER
-              value: "{{ .Values.mysqlUser }}"
+              value: "{{ .Values.mysqlUser }}"  # Added quotes
             - name: MYSQL_PASSWORD
-              value: "{{ .Values.mysqlPassword }}"
-          ports:
-            - containerPort: 3306
-          readinessProbe:
-            exec:
-              command:
-                - /bin/sh
-                - -c
-                - "mysqladmin ping -h 127.0.0.1 -uroot -p{{ .Values.mysqlRootPassword }}"
-            initialDelaySeconds: 30
-            periodSeconds: 10
-          command:
-            - "mysqld"
-            - "--default-authentication-plugin=mysql_native_password"
-            - "--bind-address=0.0.0.0"
-          args:
-            - "--skip-networking=0"
-            - "--skip-host-cache"
-            - "--skip-name-resolve"
+              value: "{{ .Values.mysqlPassword }}"  # Added quotes
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
-            - name: mysql-config
-              mountPath: /etc/mysql/conf.d
-            - name: mysql-init
-              mountPath: /docker-entrypoint-initdb.d
-
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:
             claimName: mysql-pvc
-        - name: mysql-config
-          configMap:
-            name: mysql-config
-        - name: mysql-init
-          configMap:
-            name: mysql-init-script
