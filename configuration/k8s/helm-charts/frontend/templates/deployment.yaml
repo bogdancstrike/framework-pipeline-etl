@@ -17,3 +17,6 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 80
+          env:
+            - name: REACT_APP_API_BASE_URL
+              value: "{{ .Values.env.REACT_APP_API_BASE_URL }}"

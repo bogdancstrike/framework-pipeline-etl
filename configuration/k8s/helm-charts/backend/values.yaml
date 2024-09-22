@@ -5,7 +5,7 @@ image:
   tag: latest
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 5000
 
 env:

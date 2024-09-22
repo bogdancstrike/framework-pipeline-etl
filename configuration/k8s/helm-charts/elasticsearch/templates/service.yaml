@@ -4,6 +4,7 @@ metadata:
   name: elasticsearch
 spec:
   type: {{ .Values.service.type }}
+
   ports:
     - port: {{ .Values.service.port }}
       targetPort: 9200
