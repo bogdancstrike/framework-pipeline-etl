@@ -5,5 +5,5 @@ image:
   tag: latest
 
 service:
-  type: NodePort # NodePort or LoadBalancer for external access
+  type: ClusterIP # NodePort or LoadBalancer for external access
   port: 3033
