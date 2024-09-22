@@ -101,7 +101,7 @@ recreate_namespace() {
 
 # Function to deploy all services
 deploy_services() {
-    services=(mysql kafka kafka-ui backend frontend postgres grafana elasticsearch logstash kibana)
+    services=(mysql kafka kafka-ui jaeger backend frontend postgres grafana elasticsearch logstash kibana)
 
     echo -e "${YELLOW}Deploying services in namespace '${NAMESPACE}'...${NC}"
     for service in "${services[@]}"; do
@@ -113,7 +113,7 @@ deploy_services() {
 
 # Function to perform rolling updates on all services
 rolling_updates() {
-    services=(mysql kafka kafka-ui backend frontend postgres grafana elasticsearch logstash kibana)
+    services=(mysql kafka kafka-ui jaeger backend frontend postgres grafana elasticsearch logstash kibana)
 
     echo -e "${YELLOW}Performing rolling updates for services in namespace '${NAMESPACE}'...${NC}"
     for service in "${services[@]}"; do
@@ -147,7 +147,7 @@ deploy_only() {
 scale_pods() {
     local scale_count=$1
     echo -e "${YELLOW}Scaling all services to ${scale_count} instances...${NC}"
-    services=(mysql kafka kafka-ui backend frontend postgres grafana elasticsearch logstash kibana)
+    services=(mysql kafka kafka-ui jaeger backend frontend postgres grafana elasticsearch logstash kibana)
     for service in "${services[@]}"; do
         microk8s kubectl scale deployment "$service" -n "$NAMESPACE" --replicas="$scale_count" > /dev/null 2>&1 &
         spinner "Scaling $service to $scale_count instances..."

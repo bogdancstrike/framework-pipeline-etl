@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="serve frontend with nginx in container">
+      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/Chart.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/deployment.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/service.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/values.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/k8s/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/deploy.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka/values.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +129,7 @@
       <workItem from="1726906796148" duration="294000" />
       <workItem from="1726907097717" duration="3591000" />
       <workItem from="1726929826636" duration="8690000" />
-      <workItem from="1727008677443" duration="8233000" />
+      <workItem from="1727008677443" duration="8758000" />
     </task>
     <task id="LOCAL-00001" summary="k8s">
       <option name="closed" value="true" />
@@ -190,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727016369249</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="serve frontend with nginx in container">
+      <option name="closed" value="true" />
+      <created>1727017819633</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727017819633</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

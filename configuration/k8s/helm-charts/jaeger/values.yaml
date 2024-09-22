@@ -1,0 +1,62 @@
+image:
+  repository: jaegertracing/all-in-one
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  ports:
+    - name: jaeger-ui
+      port: 16686
+      targetPort: 16686
+      protocol: TCP
+    - name: grpc-collector-4317
+      port: 4317
+      targetPort: 4317
+      protocol: TCP
+    - name: grpc-collector-4318
+      port: 4318
+      targetPort: 4318
+      protocol: TCP
+    - name: thrift-agent-udp-6831
+      port: 6831
+      targetPort: 6831
+      protocol: UDP
+    - name: thrift-agent-udp-6832
+      port: 6832
+      targetPort: 6832
+      protocol: UDP
+    - name: zipkin-http
+      port: 9411
+      targetPort: 9411
+      protocol: TCP
+    - name: other-5775
+      port: 5775
+      targetPort: 5775
+      protocol: TCP
+    - name: other-5778
+      port: 5778
+      targetPort: 5778
+      protocol: TCP
+    - name: other-14250
+      port: 14250
+      targetPort: 14250
+      protocol: TCP
+    - name: other-14267
+      port: 14267
+      targetPort: 14267
+      protocol: TCP
+    - name: other-14268
+      port: 14268
+      targetPort: 14268
+      protocol: TCP
+
+env:
+  - name: LOG_LEVEL
+    value: debug
+  - name: COLLECTOR_ZIPKIN_HTTP_PORT
+    value: "9411"
+
+resources: {}

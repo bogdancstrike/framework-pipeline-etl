@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: jaeger
+  template:
+    metadata:
+      labels:
+        app: jaeger
+    spec:
+      containers:
+        - name: jaeger
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: jaeger-ui
+              containerPort: 16686
+              protocol: TCP
+            - name: grpc-collector-4317
+              containerPort: 4317
+              protocol: TCP
+            - name: grpc-collector-4318
+              containerPort: 4318
+              protocol: TCP
+            - name: thrift-agent-udp-6831
+              containerPort: 6831
+              protocol: UDP
+            - name: thrift-agent-udp-6832
+              containerPort: 6832
+              protocol: UDP
+            - name: zipkin-http
+              containerPort: 9411
+              protocol: TCP
+            - name: other-5775
+              containerPort: 5775
+              protocol: TCP
+            - name: other-5778
+              containerPort: 5778
+              protocol: TCP
+            - name: other-14250
+              containerPort: 14250
+              protocol: TCP
+            - name: other-14267
+              containerPort: 14267
+              protocol: TCP
+            - name: other-14268
+              containerPort: 14268
+              protocol: TCP
+          env:
+            {{- range .Values.env }}
+            - name: {{ .name }}
+              value: {{ .value }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
