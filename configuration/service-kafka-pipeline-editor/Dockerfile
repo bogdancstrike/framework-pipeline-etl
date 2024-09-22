@@ -24,3 +24,7 @@ ENV FLASK_APP=app.py
 
 # Run the Flask app
 CMD ["flask", "run", "--host=0.0.0.0"]
+
+# docker build --no-cache -t service-kafka-pipeline-editor:latest .
+# docker tag service-kafka-pipeline-editor:latest localhost:32000/service-kafka-pipeline-editor:latest
+# docker push localhost:32000/service-kafka-pipeline-editor:latest
