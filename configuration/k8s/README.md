@@ -1,5 +1,6 @@
 ## Project Structure
 
+```code
 k8s-project/
 ├── deploy.sh                       # Script to deploy all services
 ├── helm-charts/                    # Directory for Helm charts
@@ -17,6 +18,12 @@ k8s-project/
 │   │       ├── deployment.yaml
 │   │       ├── service.yaml
 │   ├── kafka-ui/
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   └── templates/
+│   │       ├── deployment.yaml
+│   │       ├── service.yaml
+│   ├── jaeger/
 │   │   ├── Chart.yaml
 │   │   ├── values.yaml
 │   │   └── templates/
@@ -76,6 +83,8 @@ k8s-project/
 │   ├── kafka-pvc.yaml
 │   ├── elasticsearch-pvc.yaml
 └── README.md                       # Project documentation
+```
+
 
 ## Deploy
 
