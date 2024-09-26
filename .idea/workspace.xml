@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="added helm for jaeger">
-      <change afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/logstash/templates/configmap.yaml" afterDir="false" />
+    <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="updated ELK charts to watch external logs dir">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/templates/pvc.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/templates/pvc.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/elasticsearch/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/logstash/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/logstash/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/logstash/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/logstash/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workers/worker-template-jaeger/.env" beforeDir="false" afterPath="$PROJECT_DIR$/workers/worker-template-jaeger/.env" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +125,7 @@
       <workItem from="1726907097717" duration="3591000" />
       <workItem from="1726929826636" duration="8690000" />
       <workItem from="1727008677443" duration="10611000" />
-      <workItem from="1727371680362" duration="2000000" />
+      <workItem from="1727371680362" duration="4608000" />
     </task>
     <task id="LOCAL-00001" summary="k8s">
       <option name="closed" value="true" />
@@ -224,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727020123123</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="updated ELK charts to watch external logs dir">
+      <option name="closed" value="true" />
+      <created>1727373787204</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727373787204</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +263,8 @@
     <MESSAGE value="serve frontend with nginx in container" />
     <MESSAGE value="added helm for jaeger&#10;updated deploy.sh" />
     <MESSAGE value="added helm for jaeger" />
-    <option name="LAST_COMMIT_MESSAGE" value="added helm for jaeger" />
+    <MESSAGE value="updated ELK charts to watch external logs dir" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated ELK charts to watch external logs dir" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
