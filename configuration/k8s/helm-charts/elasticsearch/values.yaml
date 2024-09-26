@@ -13,3 +13,16 @@ persistence:
   storageClass: "hostpath"
   accessMode: ReadWriteOnce
   size: 5Gi
+
+# Disable security in Elasticsearch
+extraEnv:
+  - name: discovery.type
+    value: "single-node"
+  - name: ES_JAVA_OPTS
+    value: "-Xms512m -Xmx512m"
+  - name: xpack.security.enabled
+    value: "false"
+  - name: xpack.security.http.ssl.enabled
+    value: "false"
+  - name: xpack.security.transport.ssl.enabled
+    value: "false"

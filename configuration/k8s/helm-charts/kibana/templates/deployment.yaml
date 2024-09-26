@@ -16,7 +16,9 @@ spec:
         - name: kibana
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
-            - name: ELASTICSEARCH_HOSTS
-              value: http://elasticsearch:9200
+            {{- range .Values.extraEnv }}
+            - name: {{ .name }}
+              value: "{{ .value }}"
+            {{- end }}
           ports:
             - containerPort: 5601

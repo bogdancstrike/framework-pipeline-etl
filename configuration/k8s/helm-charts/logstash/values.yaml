@@ -1,3 +1,5 @@
+# values.yaml
+
 replicaCount: 1
 
 image:
@@ -7,3 +9,9 @@ image:
 service:
   type: ClusterIP
   port: 5044
+
+logDirectory: "/home/bogdan/workspace/dev/frameworks/etl-kafka/framework-pipeline-etl/logs"  # Replace with the actual path
+
+logstashConfig:
+  enabled: true
+  configPath: "/usr/share/logstash/pipeline/logstash.conf"

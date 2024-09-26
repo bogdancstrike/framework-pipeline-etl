@@ -16,10 +16,10 @@ spec:
         - name: elasticsearch
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
-            - name: discovery.type
-              value: single-node
-            - name: ES_JAVA_OPTS
-              value: "-Xms512m -Xmx512m"
+            {{- range .Values.extraEnv }}
+            - name: {{ .name }}
+              value: "{{ .value }}"
+            {{- end }}
           ports:
             - containerPort: 9200
           volumeMounts:

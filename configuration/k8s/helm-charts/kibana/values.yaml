@@ -7,3 +7,9 @@ image:
 service:
   type: ClusterIP
   port: 5601
+
+extraEnv:
+  - name: ELASTICSEARCH_HOSTS
+    value: "http://elasticsearch:9200"
+  - name: XPACK_SECURITY_ENABLED
+    value: "false"
