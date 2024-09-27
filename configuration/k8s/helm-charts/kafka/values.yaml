@@ -5,18 +5,20 @@ image:
   tag: latest
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 9092
+  nodePort: 30092
+  externalIP: "192.168.1.140"
 
 kafka:
   brokerId: 1
   nodeId: 1
   processRoles: broker,controller
   listeners: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+  advertisedListeners: "PLAINTEXT://192.168.1.140:30092"
   listenerSecurityProtocolMap: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
   controllerQuorumVoters: 1@localhost:9093
   controllerListenerNames: CONTROLLER
-  advertisedListeners: PLAINTEXT://kafka:9092
   logDirs: /bitnami/kafka/data
   offsetsTopicReplicationFactor: 1
   defaultReplicationFactor: 1

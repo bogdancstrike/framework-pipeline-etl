@@ -72,6 +72,9 @@ def handle_message(consumer, producer, topics_input, output_topics, consumer_nam
         topic_tracker = defaultdict(set)
         timestamp_buffer = {}
 
+        producer.send(topics_input[0], {"id":123, "message":"hello world"})
+        print('hello worlds test message sent')
+
         config = fetch_configuration(consumer_name)
 
         # Use timeout from the DB, default to 240 if not set
