@@ -5,5 +5,7 @@ image:
   tag: latest
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 3000
+  nodePort: 3000
+  externalIP: "192.168.1.140"

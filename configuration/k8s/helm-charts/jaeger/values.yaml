@@ -1,12 +1,13 @@
 replicaCount: 1
 
 image:
-  repository: jaegertracing/all-in-one  # Ensure this is set correctly
-  tag: latest                           # Ensure this is set correctly
+  repository: jaegertracing/all-in-one
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: NodePort
+  externalIP: "192.168.1.140"
   ports:
     - name: jaeger-ui
       port: 16686

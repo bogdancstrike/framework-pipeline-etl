@@ -5,8 +5,10 @@ image:
   tag: latest
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 5432
+  nodePort: 5432
+  externalIP: "192.168.1.140"
 
 persistence:
   enabled: true

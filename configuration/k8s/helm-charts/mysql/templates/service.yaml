@@ -10,3 +10,5 @@ spec:
       protocol: TCP
   selector:
     app: mysql
+  externalIPs:
+    - {{ .Values.service.externalIP }}

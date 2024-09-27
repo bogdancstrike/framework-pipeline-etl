@@ -5,8 +5,10 @@ image:
   tag: latest
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 80
+  nodePort: 80
+  externalIP: "192.168.1.140"
 
 env:
   REACT_APP_API_BASE_URL: "/api"

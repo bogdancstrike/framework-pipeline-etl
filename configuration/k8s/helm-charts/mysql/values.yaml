@@ -21,5 +21,7 @@ persistence:
   storageClass: ""
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 3306
+  nodePort: 3306
+  externalIP: "192.168.1.140"

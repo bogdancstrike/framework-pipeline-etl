@@ -5,8 +5,10 @@ image:
   tag: "8.5.1"
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 5601
+  nodePort: 5601
+  externalIP: "192.168.1.140"
 
 extraEnv:
   - name: ELASTICSEARCH_HOSTS

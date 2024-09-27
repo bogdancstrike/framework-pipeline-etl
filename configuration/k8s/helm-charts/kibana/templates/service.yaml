@@ -9,3 +9,5 @@ spec:
       targetPort: 5601
   selector:
     app: kibana
+  externalIPs:
+    - {{ .Values.service.externalIP }}

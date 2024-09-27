@@ -9,3 +9,5 @@ spec:
       targetPort: 3000
   selector:
     app: grafana
+  externalIPs:
+    - {{ .Values.service.externalIP }}

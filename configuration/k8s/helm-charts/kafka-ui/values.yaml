@@ -5,5 +5,7 @@ image:
   tag: latest
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 8080
+  nodePort: 8080
+  externalIP: "192.168.1.140"

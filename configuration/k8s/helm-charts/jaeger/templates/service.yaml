@@ -13,3 +13,5 @@ spec:
     {{- end }}
   selector:
     app: jaeger
+  externalIPs:
+    - {{ .Values.service.externalIP }}
