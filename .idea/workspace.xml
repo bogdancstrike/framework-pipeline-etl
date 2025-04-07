@@ -6,21 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="587aa3a9-06ad-45e6-a8d7-c53a94da6c79" name="Changes" comment="updated ELK charts to watch external logs dir">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/frontend/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/grafana/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/grafana/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/grafana/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/grafana/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/jaeger/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kafka-ui/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/kibana/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/mysql/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/mysql/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/mysql/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/mysql/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/postgres/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/postgres/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/k8s/helm-charts/postgres/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/k8s/helm-charts/postgres/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workers/worker-template-jaeger/.env" beforeDir="false" afterPath="$PROJECT_DIR$/workers/worker-template-jaeger/.env" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +125,9 @@
       <workItem from="1726929826636" duration="8690000" />
       <workItem from="1727008677443" duration="10611000" />
       <workItem from="1727371680362" duration="4644000" />
-      <workItem from="1727455555422" duration="2867000" />
+      <workItem from="1727455555422" duration="3345000" />
+      <workItem from="1727793737282" duration="634000" />
+      <workItem from="1729177178826" duration="342000" />
     </task>
     <task id="LOCAL-00001" summary="k8s">
       <option name="closed" value="true" />
