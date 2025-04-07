@@ -1,8 +1,12 @@
 import time
 from collections import defaultdict
-from kafka import KafkaConsumer, KafkaProducer
+from time import sleep
+
+from kafka import KafkaConsumer, KafkaProducer, TopicPartition
 from kafka.errors import NoBrokersAvailable, KafkaError
 import json
+
+from framework.redis.redis_utils import RedisUtils
 from models.models import ConsumerConfig, create_session, init_db
 from config import Config
 from framework.commons.logger import logger
@@ -10,6 +14,11 @@ from ops_service.worker_kafka import process
 
 # Initialize the database
 init_db()
+
+retry_number = 0
+
+redis_util = RedisUtils(host=Config.REDIS_HOST, port=int(Config.REDIS_PORT), db=int(Config.REDIS_DB),
+                        password=Config.REDIS_PASSWORD)
 
 
 def fetch_configuration(consumer_name):
@@ -65,81 +74,143 @@ def create_kafka_producer(bootstrap_servers, output_topics):
             time.sleep(5)
 
 
+def send_ack(consumer, message):
+    try:
+        # todo: sa-si tina valoarea actuala a rety-ului pt id-ul mesajul in Redis
+        global retry_number
+        if retry_number > 0:
+            retry_number = 0
+        # Commit the offset to acknowledge successful processing
+        consumer.commit()
+        logger.debug(f"Ack sent for message: {message}")
+    except Exception as e:
+        logger.error(f"Failed to send ack: {e}")
+
+
+def send_nack(consumer, message):
+    try:
+        # todo: retry-ul merge la infinit
+        # todo: sa-si tina valoarea actuala a rety-ului pt id-ul mesajul in Redis
+        global retry_number
+        retry_number += 1
+        logger.info(f"Retry number: {retry_number}")
+        # Create a TopicPartition instance for the current message
+        topic_partition = TopicPartition(message.topic, message.partition)
+        time.sleep(Config.NACK_TIME)
+
+        # Seek to the message's offset to retry it on the next poll
+        consumer.seek(topic_partition, message.offset)
+        logger.warning(f"Nack sent for message: {message}. Will retry in the next poll.")
+    except Exception as e:
+        logger.error(f"Failed to send nack: {e}")
+
+
 def handle_message(consumer, producer, topics_input, output_topics, consumer_name=Config.WORKER_NAME):
     try:
         logger.info("Starting message handling loop...")
-        message_buffer = defaultdict(dict)
-        topic_tracker = defaultdict(set)
-        timestamp_buffer = {}
-
-        producer.send(topics_input[0], {"id":123, "message":"hello world"})
-        print('hello worlds test message sent')
 
         config = fetch_configuration(consumer_name)
 
-        # Use timeout from the DB, default to 240 if not set
-        message_timeout = config.timeout if config.timeout else 240
-
-        while True:
-            current_time = time.time()
-            message_batch = consumer.poll(timeout_ms=1000)
-
-            for tp, messages in message_batch.items():
-                for message in messages:
+        for message in consumer:
+            try:
+                if retry_number > Config.RETRY_COUNT:
                     try:
                         message_value = json.loads(message.value.decode('utf-8'))
-                        message_id = message_value.get('id')
-                        topic = message.topic
-
-                        if message_id not in message_buffer:
-                            message_buffer[message_id] = {}
-                            timestamp_buffer[message_id] = current_time
-
-                        for key, value in message_value.items():
-                            if key == "content" and key in message_buffer[message_id]:
-                                message_buffer[message_id]["content"].update(value)
-                            else:
-                                message_buffer[message_id][key] = value
-
-                        topic_tracker[message_id].add(topic)
-
-                        num_received = len(topic_tracker[message_id])
-                        total_expected = len(topics_input)
-                        logger.info(
-                            f"Message {num_received}/{total_expected} arrived for ID = {message_id} with content: {message_value}")
-
-                        if num_received == total_expected:
-                            logger.info(f"All {total_expected} messages received for ID = {message_id}. Processing...")
-
-                            aggregated_message = message_buffer.pop(message_id)
-                            processed_message = process(aggregated_message, consumer_name, config.metadatas)
-                            # processed_message = process2()
-                            logger.debug(f"Processed message: {processed_message}")
-
-                            for output_topic in output_topics:
-                                producer.send(output_topic, processed_message)
-                                logger.debug(f"Processed message sent to Kafka topic {output_topic}")
-
-                            timestamp_buffer.pop(message_id, None)
-                            topic_tracker.pop(message_id, None)
 
                     except Exception as e:
-                        logger.error(f"Error processing message: {e}")
+                        # todo: implementat exceptie daca json-ul e corupt
+                        message_value = "Error parsing message_value"
 
-            for mid in list(timestamp_buffer.keys()):
-                if current_time - timestamp_buffer[mid] > message_timeout:
-                    logger.warn(
-                        f"Timeout reached, ignoring and removing incomplete message with ID = {mid} from memory")
-                    message_buffer.pop(mid, None)
-                    timestamp_buffer.pop(mid, None)
-                    topic_tracker.pop(mid, None)
+                    producer.send(Config.ERROR_TOPIC, message_value)
+                    logger.info("Message sent to dead_letter topic")
+                    # Send ack
+                    try:
+                        send_ack(consumer, message)
+                    except:
+                        logger.warn(f"Failed to send ack for message {message}", "yellow")
+                else:
+                    message_value = json.loads(message.value.decode('utf-8'))
+                    message_id = message_value.get('id')
+
+                    total_expected = len(topics_input)
+                    if total_expected == 1 or Config.IS_AGGREGATOR is False:
+                        process_and_forward(config, consumer, consumer_name, message_id, message_value,
+                                            output_topics, producer, total_expected)
+                    else:
+                        # check in redis how many messages i have for that key
+                        total_messages_for_key = redis_util.get_list_length(message_id)
+
+                        if total_messages_for_key + 1 == total_expected:
+                            ## pull messages from redis
+                            messages_from_redis = [
+                                json.loads(msg) for msg in redis_util.redis.lrange(message_id, 0, -1)
+                            ]
+
+                            ## add my message
+                            messages_from_redis.append(message_value)
+                            logger.info("message appended to redis")
+
+                            ## aggregate messages
+                            aggregated_message = aggregate_messages(messages_from_redis)
+
+                            ## process and forward
+                            process_and_forward(config, consumer, consumer_name, message_id, aggregated_message,
+                                                output_topics, producer, total_expected)
+
+                            ## clear redis
+                            redis_util.delete_key(message_id)
+                            logger.info("message deleted from redis")
+
+                        else:
+                            redis_util.redis.lpush(message_id, json.dumps(message_value))
+                            redis_util.redis.expire(message_id, config.timeout if config.timeout else 600)
+
+            except Exception as e:
+                logger.error(f"Error processing message: {e}", "red_back")
+                # Send nack
+                send_nack(consumer, message)
 
     except KeyboardInterrupt:
         logger.info("Shutting down gracefully...")
     except Exception as e:
-        logger.error(f"Unexpected error in main execution: {e}")
+        logger.error(f"Unexpected error in main execution: {e}", "red_back")
     finally:
         close_resources(consumer, producer)
+
+
+def process_and_forward(config, consumer, consumer_name, message_id, message_value, output_topics, producer,
+                        total_expected):
+    logger.info(
+        f"All {total_expected} messages received for ID = {message_id}. Processing...", 'green')
+    processed_message = process(message_value, consumer_name, config.metadatas)
+    logger.debug(f"Processed message: {processed_message}")
+    for output_topic in output_topics:
+        producer.send(output_topic, processed_message)
+        logger.debug(f"Processed message sent to Kafka topic {output_topic}", 'blue')
+    # Send ack
+    try:
+        send_ack(consumer, processed_message)
+    except:
+        logger.warn(f"Failed to send ack for message {processed_message}", "red_back")
+
+
+def aggregate_messages(messages):
+    """
+    Aggregates a list of dictionaries into a single dictionary.
+
+    If dictionaries share the same keys, values are merged based on keys.
+
+    :param messages: List of dictionaries with similar IDs to be aggregated.
+    :return: A single aggregated dictionary.
+    """
+    aggregated_message = {}
+
+    for message in messages:
+        for key, value in message.items():
+            # Add or update other message fields
+            aggregated_message[key] = value
+
+    return aggregated_message
 
 
 def close_resources(consumer, producer):
@@ -148,10 +219,10 @@ def close_resources(consumer, producer):
             consumer.close()
             logger.info("Kafka consumer closed.")
         except Exception as e:
-            logger.error(f"Error closing Kafka consumer: {e}")
+            logger.error(f"Error closing Kafka consumer: {e}", "red_back")
     if producer:
         try:
             producer.close()
             logger.info("Kafka producer closed.")
         except Exception as e:
-            logger.error(f"Error closing Kafka producer: {e}")
+            logger.error(f"Error closing Kafka producer: {e}", "red_back")

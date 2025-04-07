@@ -6,6 +6,8 @@ from flask_cors import CORS
 from flask_talisman import Talisman
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.instrumentation.kafka import KafkaInstrumentor
+
 import config
 
 db = SQLAlchemy()
@@ -16,3 +18,5 @@ cors = CORS(resources={r"/*": {"origins": config.Config.CORS_ALLOWED_ORIGINS}})
 talisman = Talisman()
 flask_instrumentor = FlaskInstrumentor()
 req_instrumentor = RequestsInstrumentor()
+kafka_instrumentor = KafkaInstrumentor()
+

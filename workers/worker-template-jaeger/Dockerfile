@@ -16,5 +16,12 @@ EXPOSE 7001
 # Define environment variable
 ENV PYTHONUNBUFFERED=1
 
+# Create a non-root user with UID 1000
+RUN groupadd -g 1000 mygroup && \
+    useradd -u 1000 -g mygroup -s /bin/bash -m myuser
+
+# Create /app directory and set permissions
+RUN mkdir -p /app && chown -R myuser:mygroup /app
+
 # Run the application
 CMD ["python3", "main.py"]

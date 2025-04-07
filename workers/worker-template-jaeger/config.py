@@ -21,9 +21,23 @@ class Config:
     DB_PASSWORD = environ.get('DB_PASSWORD')
     DB_TABLE_NAME = environ.get('DB_TABLE_NAME')
 
+
+    # redis
+    REDIS_HOST = environ.get('REDIS_HOST')
+    REDIS_PORT = environ.get('REDIS_PORT')
+    REDIS_DB = environ.get('REDIS_DB')
+    REDIS_PASSWORD = environ.get('REDIS_PASSWORD')
+
     # region worker
-    WORKER_NAME = 'worker_1'
+    DISABLE_KAFKA = environ.get('DISABLE_KAFKA')
+    WORKER_NAME = environ.get('WORKER_NAME')
+    IS_AGGREGATOR = False
+
     # endregion
+
+    # region opentelemetry
+    JAEGAR_AGENT_HOST_NAME = environ.get('JAEGAR_AGENT_HOST_NAME')
+    JAEGER_AGENT_PORT = environ.get('JAEGER_AGENT_PORT')
 
     """Set Flask configuration from .env file."""
 
@@ -65,3 +79,7 @@ class Config:
     LOGGING_LEVEL = environ.get('LOGGING_LEVEL')
     logger.setLevel(LOGGING_LEVEL)
 
+    # GENERIC - KAFKA
+    NACK_TIME = 2
+    RETRY_COUNT = 5
+    ERROR_TOPIC = 'dead_letter'

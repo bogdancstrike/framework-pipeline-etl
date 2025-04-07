@@ -33,3 +33,4 @@ def create_session():
 def init_db():
     engine = get_engine()
     Base.metadata.create_all(engine)
+
